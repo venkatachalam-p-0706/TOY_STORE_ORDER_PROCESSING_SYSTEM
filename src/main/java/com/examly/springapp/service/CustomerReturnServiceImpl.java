@@ -26,4 +26,19 @@ public class CustomerReturnServiceImpl implements CustomerReturnService{
         return customerretrepo.findById(customerReturnId).orElse(null);
     }
     
+    public CustomerReturn updateCustomerReturn(CustomerReturn customret,int customerReturnId){
+        CustomerReturn toBeUpdated=getCustomerReturnById(customerReturnId);
+        if(toBeUpdated==null) return null;
+        toBeUpdated.setReturnDate(customret.getReturnDate());
+        toBeUpdated.setReason(customret.getReason());
+        toBeUpdated.setQuantity(customret.getQuantity());
+        toBeUpdated.setProduct(customret.getProduct());
+        return customerretrepo.save(toBeUpdated);
+    }
+    public Boolean deleteCustomerReturn(int customerReturnId){
+        CustomerReturn toBeDeleted=getCustomerReturnById(customerReturnId);
+        if(toBeDeleted==null) return false;
+        customerretrepo.deleteById(customerReturnId);
+        return true;
+    }
 }

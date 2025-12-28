@@ -8,5 +8,6 @@ public interface ProductService {
     public List<Product> getAllProducts();
     public Product getProductById(int productId);
     public Product updateProduct(Product prod,int productId);
+    public Boolean deleteProduct(int productId);
 
 }

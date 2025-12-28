@@ -7,4 +7,5 @@ public interface PurchaseOrderService {
     public List<PurchaseOrder> getAllPurchaseOrders();
     public PurchaseOrder getPurchaseOrderById(int purchaseOrderId);
     public PurchaseOrder updatePurchaseOrder(PurchaseOrder purchaseOrder,int purchaseOrderId);
+    public Boolean deletePurchaseOrder(int purchaseOrderId);
 }

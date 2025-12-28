@@ -46,8 +46,14 @@ public class ProductController{
         return ResponseEntity.ok(prodserv.updateProduct(prod,productId));
     }
 
-    @DeleteMapping
-    public void deleteProduct(){}
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Boolean> deleteProduct(@PathVariable int productId){
+        Boolean deleted=prodserv.deleteProduct(productId);
+        if(deleted)
+            return ResponseEntity.status(200).body(true);
+        return ResponseEntity.status(404).body(false);
+
+    }
 
    
 }

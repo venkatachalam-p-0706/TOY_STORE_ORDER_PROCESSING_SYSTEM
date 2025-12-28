@@ -31,4 +31,10 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService{
         toBeUpdated.setSupplier(purchaseOrder.getSupplier());
         return purchaseorderrepo.save(toBeUpdated);
     }
+    public Boolean deletePurchaseOrder(int purchaseOrderId){
+        PurchaseOrder toBeDeleted=getPurchaseOrderById(purchaseOrderId);
+        if(toBeDeleted==null) return false;
+        purchaseorderrepo.deleteById(purchaseOrderId);
+        return true;
+    }
 }

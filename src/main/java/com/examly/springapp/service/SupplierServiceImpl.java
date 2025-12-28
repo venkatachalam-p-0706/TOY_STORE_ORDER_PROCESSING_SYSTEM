@@ -32,6 +32,12 @@ public class SupplierServiceImpl implements SupplierService {
         toBeUpdated.setAddress(supp.getAddress());
         return supprepo.save(toBeUpdated);
     }
+    public Boolean deleteSupplier(int supplierId){
+        Supplier toBeDeleted=getSupplierById(supplierId);
+        if(toBeDeleted==null) return false;
+        supprepo.deleteById(supplierId);
+        return true;
+    }
 
     
 }

@@ -34,4 +34,10 @@ public class ProductServiceImpl implements ProductService {
         prodToBeUpdated.setStockQuantity(prod.getStockQuantity());
         return prodrepo.save(prodToBeUpdated);
     }
+    public Boolean deleteProduct(int productId){
+        Product prodToBeDeleted=getProductById(productId);
+        if(prodToBeDeleted==null) return false;
+        prodrepo.deleteById(productId);
+        return true;
+    }
 }

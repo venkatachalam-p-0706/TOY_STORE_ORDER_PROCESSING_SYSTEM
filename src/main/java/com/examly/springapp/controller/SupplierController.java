@@ -2,6 +2,7 @@ package com.examly.springapp.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +39,12 @@ public class SupplierController {
     @PutMapping("/{supplierId}")
     public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supp,@PathVariable int supplierId){
         return ResponseEntity.ok(suppserv.updateSupplier(supp,supplierId));
+    }
+    @DeleteMapping("/{supplierId}")
+    public ResponseEntity<Boolean> deleteSupplier(@PathVariable int supplierId){
+        Boolean deleted=suppserv.deleteSupplier(supplierId);
+        if(deleted)
+            return ResponseEntity.status(200).body(true);
+        return ResponseEntity.status(404).body(false);
     }
 }

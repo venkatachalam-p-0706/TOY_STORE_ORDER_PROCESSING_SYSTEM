@@ -8,4 +8,6 @@ public interface CustomerReturnService {
     public CustomerReturn addCustomerReturn(CustomerReturn customret);
     public List<CustomerReturn> getAllCustomerReturn();
     public CustomerReturn getCustomerReturnById(int customerReturnId);
+    public CustomerReturn updateCustomerReturn(CustomerReturn customret,int customerReturnId);
+    public Boolean deleteCustomerReturn(int customerReturnId);
 }

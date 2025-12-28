@@ -17,6 +17,27 @@ public class PurchaseOrderItemServiceImpl implements PurchaseOrderItemService {
     public PurchaseOrderItem addPurchaseOrderItem(PurchaseOrderItem purorditem){
         return purorditemrepo.save(purorditem);
     }
+    public List<PurchaseOrderItem> getAllPurchaseOrderItems(){
+        return purorditemrepo.findAll();
+    }
+    public PurchaseOrderItem getPurchaseOrderItemById(int purchaseOrderItemId){
+        return purorditemrepo.findById(purchaseOrderItemId).orElse(null);
+    }
+    public PurchaseOrderItem updatePurchaseOrderItem(PurchaseOrderItem purorditem,int purchaseOrderItemId){
+        PurchaseOrderItem toBeUpdated=getPurchaseOrderItemById(purchaseOrderItemId);
+        if(toBeUpdated==null) return null;
+        toBeUpdated.setPurchaseOrder(purorditem.getPurchaseOrder());
+        toBeUpdated.setProduct(purorditem.getProduct());
+        toBeUpdated.setQuantity(purorditem.getQuantity());
+        toBeUpdated.setUnitPrice(purorditem.getUnitPrice());
+        return purorditemrepo.save(toBeUpdated);
+    }
+    public Boolean deletePurchaseOrderItem(int purchaseOrderItemId){
+        PurchaseOrderItem toBeDeleted=getPurchaseOrderItemById(purchaseOrderItemId);
+        if(toBeDeleted==null) return false;
+        purorditemrepo.deleteById(purchaseOrderItemId);
+        return true;
+    }
 
     public List<PurchaseOrderItem> getPurchaseOrderItemsByOrderId(int purchaseOrderId){
         return purorditemrepo.findByPurchaseOrder_PurchaseOrderId(purchaseOrderId);
